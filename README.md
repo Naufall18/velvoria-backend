@@ -1,53 +1,139 @@
-# 🏗️ LuxeMart Backend - Microservices Architecture
+<div align="center">
 
-Premium Multi-Vendor Marketplace Backend System
+# 🏗️ LuxeMart Backend
 
-## 📋 Overview
+### Premium Multi-Vendor Marketplace - Microservices Architecture
 
-LuxeMart Backend is a comprehensive microservices-based e-commerce platform built with Node.js, designed to handle luxury marketplace operations with high scalability and performance.
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Express](https://img.shields.io/badge/Express-4.18+-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6+-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Redis](https://img.shields.io/badge/Redis-7+-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-## 🎯 Key Features
+**Enterprise-grade backend system powering luxury e-commerce at scale**
 
-- **Microservices Architecture** - 12 independent services
-- **Multi-Vendor Support** - Complete vendor management system
-- **Live Shopping** - Real-time streaming integration
-- **Advanced Search** - Elasticsearch-powered product discovery
-- **Real-time Chat** - Socket.io messaging system
-- **Payment Integration** - Multiple payment gateways
-- **Shipping Integration** - Major courier APIs
-- **Analytics** - Comprehensive business intelligence
+[Features](#-key-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Documentation](#-documentation)
+
+</div>
+
+---
+
+## 🎯 Overview
+
+LuxeMart Backend is a **production-ready microservices platform** designed for high-performance luxury marketplace operations. Built with modern technologies and best practices, it handles millions of transactions with enterprise-grade reliability.
+
+### Why LuxeMart Backend?
+
+- 🚀 **Scalable** - Microservices architecture for horizontal scaling
+- 🔒 **Secure** - Enterprise-grade security with JWT, RBAC, and encryption
+- ⚡ **Fast** - Redis caching, optimized queries, and CDN integration
+- 🔄 **Real-time** - WebSocket support for live updates
+- 📊 **Observable** - Comprehensive logging, monitoring, and analytics
+- 🐳 **Cloud-Ready** - Docker & Kubernetes deployment ready
+
+---
+
+## ✨ Key Features
+
+### 🏪 Multi-Vendor Marketplace
+- Complete vendor onboarding and management
+- Commission-based revenue model
+- Vendor analytics and reporting
+- Multi-store support
+
+### 🛍️ Advanced E-Commerce
+- Product catalog with variants
+- Smart search with Elasticsearch
+- Real-time inventory management
+- Dynamic pricing and promotions
+
+### 💳 Payment Processing
+- Multiple payment gateways (Stripe, PayPal, Midtrans)
+- Secure payment handling
+- Automated payout system
+- Refund management
+
+### 📦 Order Management
+- Real-time order tracking
+- Multi-vendor order splitting
+- Shipping integration
+- Return and refund workflows
+
+### 💬 Communication
+- Real-time chat system
+- Push notifications (FCM)
+- Email notifications
+- SMS alerts
+
+### 📺 Live Shopping
+- Live streaming integration (Agora)
+- Real-time chat during streams
+- Product showcase
+- Interactive features
+
+### 📊 Analytics & Insights
+- Business intelligence dashboard
+- Sales analytics
+- User behavior tracking
+- Performance metrics
+
+---
 
 ## 🏗️ Architecture
 
-### Microservices
+### Microservices Overview
 
-1. **Auth Service** (Port 3001) - Authentication & Authorization
-2. **User Service** (Port 3002) - User management & profiles
-3. **Product Service** (Port 3003) - Product catalog & search
-4. **Vendor Service** (Port 3004) - Vendor operations
-5. **Order Service** (Port 3005) - Order processing
-6. **Payment Service** (Port 3006) - Payment processing
-7. **Shipping Service** (Port 3007) - Logistics management
-8. **Review Service** (Port 3008) - Reviews & ratings
-9. **Chat Service** (Port 3009) - Real-time messaging
-10. **Live Shopping Service** (Port 3010) - Live streaming
-11. **Notification Service** (Port 3011) - Push/Email/SMS
-12. **Analytics Service** (Port 3012) - Business analytics
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      API Gateway (Kong)                      │
+│                    Load Balancer & Routing                   │
+└─────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
+│  Auth Service  │   │  User Service  │   │Product Service │
+│   Port 3001    │   │   Port 3002    │   │   Port 3003    │
+└────────────────┘   └────────────────┘   └────────────────┘
+        │                     │                     │
+┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
+│ Vendor Service │   │ Order Service  │   │Payment Service │
+│   Port 3004    │   │   Port 3005    │   │   Port 3006    │
+└────────────────┘   └────────────────┘   └────────────────┘
+        │                     │                     │
+┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
+│Shipping Service│   │ Review Service │   │  Chat Service  │
+│   Port 3007    │   │   Port 3008    │   │   Port 3009    │
+└────────────────┘   └────────────────┘   └────────────────┘
+        │                     │                     │
+┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
+│Live Shop Svc   │   │ Notify Service │   │Analytics Svc   │
+│   Port 3010    │   │   Port 3011    │   │   Port 3012    │
+└────────────────┘   └────────────────┘   └────────────────┘
+```
 
-### Tech Stack
+### Technology Stack
 
-- **Runtime:** Node.js 18+
-- **Framework:** Express.js
-- **Language:** TypeScript
-- **API Gateway:** Kong
-- **Message Queue:** RabbitMQ
-- **Databases:**
-  - PostgreSQL 15+ (Primary)
-  - MongoDB 6+ (Chat, Logs)
-  - Redis 7+ (Cache, Sessions)
-  - Elasticsearch 8+ (Search)
+| Category | Technology |
+|----------|-----------|
+| **Runtime** | Node.js 18+ |
+| **Language** | TypeScript 5.0+ |
+| **Framework** | Express.js 4.18+ |
+| **API Gateway** | Kong / Nginx |
+| **Message Queue** | RabbitMQ |
+| **Databases** | PostgreSQL 15+, MongoDB 6+ |
+| **Cache** | Redis 7+ |
+| **Search** | Elasticsearch 8+ |
+| **Real-time** | Socket.io |
+| **Container** | Docker, Kubernetes |
+| **Monitoring** | Prometheus, Grafana |
+| **Logging** | Winston, ELK Stack |
 
-## 🚀 Getting Started
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -62,142 +148,80 @@ docker-compose >= 2.0.0
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/luxemart-backend.git
+git clone https://github.com/Naufall18/luxemart-backend.git
 cd luxemart-backend
 
 # Install dependencies
 npm install
 
-# Setup environment variables
+# Setup environment
 cp .env.example .env
+# Edit .env with your configuration
 
-# Start databases with Docker
+# Start infrastructure (databases, cache, etc.)
 docker-compose up -d
 
-# Run migrations
+# Run database migrations
 npm run migrate
 
-# Seed database
+# Seed initial data
 npm run seed
 
 # Start development server
 npm run dev
 ```
 
-### Environment Variables
+### Docker Quick Start
 
-```env
-# Application
-NODE_ENV=development
-PORT=3000
+```bash
+# Build and start all services
+docker-compose up --build
 
-# Database
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_DB=luxemart
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
+# View logs
+docker-compose logs -f
 
-MONGODB_URI=mongodb://localhost:27017/luxemart
-REDIS_URL=redis://localhost:6379
-ELASTICSEARCH_URL=http://localhost:9200
-
-# JWT
-JWT_SECRET=your-secret-key
-JWT_EXPIRES_IN=1h
-REFRESH_TOKEN_SECRET=your-refresh-secret
-REFRESH_TOKEN_EXPIRES_IN=7d
-
-# AWS
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-AWS_REGION=us-east-1
-AWS_S3_BUCKET=luxemart-assets
-
-# Payment Gateways
-STRIPE_SECRET_KEY=sk_test_xxx
-STRIPE_WEBHOOK_SECRET=whsec_xxx
-PAYPAL_CLIENT_ID=xxx
-PAYPAL_CLIENT_SECRET=xxx
-
-# Email
-SENDGRID_API_KEY=xxx
-EMAIL_FROM=noreply@luxemart.com
-
-# SMS
-TWILIO_ACCOUNT_SID=xxx
-TWILIO_AUTH_TOKEN=xxx
-TWILIO_PHONE_NUMBER=+1234567890
-
-# Push Notifications
-FCM_SERVER_KEY=xxx
-
-# Live Streaming
-AGORA_APP_ID=xxx
-AGORA_APP_CERTIFICATE=xxx
+# Stop services
+docker-compose down
 ```
+
+---
 
 ## 📁 Project Structure
 
 ```
 luxemart-backend/
-├── services/
-│   ├── auth-service/
-│   │   ├── src/
-│   │   │   ├── controllers/
-│   │   │   ├── models/
-│   │   │   ├── routes/
-│   │   │   ├── middleware/
-│   │   │   ├── utils/
-│   │   │   └── index.ts
-│   │   ├── tests/
-│   │   ├── package.json
-│   │   └── tsconfig.json
-│   ├── user-service/
-│   ├── product-service/
-│   ├── vendor-service/
-│   ├── order-service/
-│   ├── payment-service/
-│   ├── shipping-service/
-│   ├── review-service/
-│   ├── chat-service/
-│   ├── live-shopping-service/
-│   ├── notification-service/
-│   └── analytics-service/
-├── api-gateway/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── middleware/
-│   │   └── index.ts
-│   └── kong.yml
-├── shared/
-│   ├── types/
-│   ├── utils/
-│   ├── constants/
-│   └── interfaces/
-├── infrastructure/
-│   ├── docker/
-│   │   ├── Dockerfile.auth
-│   │   ├── Dockerfile.user
-│   │   └── ...
-│   ├── kubernetes/
-│   │   ├── deployments/
-│   │   ├── services/
-│   │   └── ingress/
-│   └── terraform/
-├── scripts/
-│   ├── migrate.sh
-│   ├── seed.sh
-│   └── deploy.sh
-├── docs/
-│   ├── api/
-│   ├── architecture/
-│   └── deployment/
-├── docker-compose.yml
-├── package.json
-├── tsconfig.json
-└── README.md
+├── services/                    # Microservices
+│   ├── auth-service/           # Authentication & Authorization
+│   ├── user-service/           # User management
+│   ├── product-service/        # Product catalog
+│   ├── vendor-service/         # Vendor operations
+│   ├── order-service/          # Order processing
+│   ├── payment-service/        # Payment handling
+│   ├── shipping-service/       # Logistics
+│   ├── review-service/         # Reviews & ratings
+│   ├── chat-service/           # Real-time messaging
+│   ├── live-shopping-service/  # Live streaming
+│   ├── notification-service/   # Notifications
+│   └── analytics-service/      # Analytics
+├── api-gateway/                # API Gateway configuration
+├── shared/                     # Shared utilities
+│   ├── types/                  # TypeScript types
+│   ├── utils/                  # Helper functions
+│   ├── constants/              # Constants
+│   └── middleware/             # Shared middleware
+├── infrastructure/             # Infrastructure as Code
+│   ├── docker/                 # Dockerfiles
+│   ├── kubernetes/             # K8s manifests
+│   └── terraform/              # Terraform configs
+├── scripts/                    # Utility scripts
+├── docs/                       # Documentation
+├── tests/                      # Integration tests
+├── docker-compose.yml          # Docker Compose config
+├── package.json                # Dependencies
+└── README.md                   # This file
 ```
+
+---
 
 ## 🔧 Development
 
@@ -216,6 +240,22 @@ npm run dev:product
 npm run dev:watch
 ```
 
+### Code Quality
+
+```bash
+# Lint code
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+
+# Format code
+npm run format
+
+# Type check
+npm run type-check
+```
+
 ### Testing
 
 ```bash
@@ -227,54 +267,54 @@ npm run test:coverage
 
 # Run specific service tests
 npm run test:auth
-npm run test:user
+
+# Run integration tests
+npm run test:integration
 
 # Run e2e tests
 npm run test:e2e
 ```
 
-### Database Migrations
+### Database Operations
 
 ```bash
-# Create migration
+# Create new migration
 npm run migration:create -- AddUsersTable
 
 # Run migrations
 npm run migration:run
 
-# Revert migration
+# Revert last migration
 npm run migration:revert
+
+# Seed database
+npm run seed
 ```
 
-## 🐳 Docker
+---
 
-### Build Images
+## 🐳 Docker & Kubernetes
+
+### Docker Commands
 
 ```bash
 # Build all services
 docker-compose build
 
-# Build specific service
-docker-compose build auth-service
-```
-
-### Run with Docker
-
-```bash
-# Start all services
-docker-compose up
-
-# Start in detached mode
+# Start services
 docker-compose up -d
+
+# View logs
+docker-compose logs -f [service-name]
 
 # Stop services
 docker-compose down
 
-# View logs
-docker-compose logs -f auth-service
+# Remove volumes
+docker-compose down -v
 ```
 
-## ☸️ Kubernetes Deployment
+### Kubernetes Deployment
 
 ```bash
 # Apply configurations
@@ -283,40 +323,78 @@ kubectl apply -f infrastructure/kubernetes/
 # Check deployments
 kubectl get deployments
 
-# Check services
-kubectl get services
+# Check pods
+kubectl get pods
 
 # View logs
 kubectl logs -f deployment/auth-service
+
+# Scale service
+kubectl scale deployment auth-service --replicas=3
 ```
 
-## 📊 Monitoring
+---
 
-- **Prometheus:** http://localhost:9090
-- **Grafana:** http://localhost:3000
-- **Kibana:** http://localhost:5601
+## 📊 Monitoring & Observability
+
+### Available Dashboards
+
+- **Prometheus**: http://localhost:9090
+- **Grafana**: http://localhost:3000
+- **Kibana**: http://localhost:5601
+- **RabbitMQ**: http://localhost:15672
+
+### Health Checks
+
+```bash
+# Check service health
+curl http://localhost:3001/health
+
+# Check all services
+npm run health:check
+```
+
+---
 
 ## 🔐 Security
 
-- JWT-based authentication
-- Role-based access control (RBAC)
-- Rate limiting
-- Input validation
-- SQL injection prevention
-- XSS protection
-- CORS configuration
-- Helmet.js security headers
+- ✅ JWT-based authentication
+- ✅ Role-based access control (RBAC)
+- ✅ Rate limiting
+- ✅ Input validation & sanitization
+- ✅ SQL injection prevention
+- ✅ XSS protection
+- ✅ CORS configuration
+- ✅ Helmet.js security headers
+- ✅ Encrypted sensitive data
+- ✅ API key management
+
+---
 
 ## 📈 Performance
 
-- Redis caching
-- Database query optimization
-- Connection pooling
-- Load balancing
-- Horizontal scaling
-- CDN integration
+- ⚡ Redis caching layer
+- ⚡ Database query optimization
+- ⚡ Connection pooling
+- ⚡ Load balancing
+- ⚡ Horizontal scaling
+- ⚡ CDN integration
+- ⚡ Gzip compression
+- ⚡ Response pagination
+
+---
+
+## 📝 API Documentation
+
+Interactive API documentation available at:
+- **Swagger UI**: http://localhost:3000/api-docs
+- **Postman Collection**: `/docs/postman/`
+
+---
 
 ## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md).
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
@@ -324,37 +402,35 @@ kubectl logs -f deployment/auth-service
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📝 API Documentation
-
-API documentation available at: http://localhost:3000/api-docs
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
-
-## 👥 Team
-
-- Backend Lead: [Your Name]
-- DevOps Engineer: [Name]
-- Database Admin: [Name]
-
-## 📞 Support
-
-- Email: support@luxemart.com
-- Slack: #luxemart-backend
-- Documentation: https://docs.luxemart.com
-
-## 🗺️ Roadmap
-
-- [x] Microservices architecture
-- [x] Authentication system
-- [x] Product catalog
-- [x] Order processing
-- [ ] AI recommendations
-- [ ] Blockchain integration
-- [ ] Advanced analytics
-- [ ] Mobile SDK
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
+## 👥 Team
+
+- **Backend Lead**: [Your Name]
+- **DevOps Engineer**: [Name]
+- **Database Admin**: [Name]
+
+---
+
+## 📞 Support
+
+- 📧 Email: support@luxemart.com
+- 💬 Slack: #luxemart-backend
+- 📚 Docs: https://docs.luxemart.com
+- 🐛 Issues: [GitHub Issues](https://github.com/Naufall18/luxemart-backend/issues)
+
+---
+
+<div align="center">
+
 **Built with ❤️ by LuxeMart Team**
+
+⭐ Star us on GitHub — it motivates us a lot!
+
+</div>
