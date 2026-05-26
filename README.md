@@ -2,19 +2,17 @@
 
 # 🏗️ LuxeMart Backend
 
-### Premium Multi-Vendor Marketplace - Microservices Architecture
+### Premium Multi-Vendor Marketplace - Laravel API
 
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Express](https://img.shields.io/badge/Express-4.18+-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Laravel](https://img.shields.io/badge/Laravel-11+-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-6+-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Redis](https://img.shields.io/badge/Redis-7+-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-**Enterprise-grade backend system powering luxury e-commerce at scale**
+**Enterprise-grade Laravel API powering luxury e-commerce at scale**
 
-[Features](#-key-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Documentation](#-documentation)
+[Features](#-key-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [API Docs](#-api-documentation)
 
 </div>
 
@@ -22,16 +20,16 @@
 
 ## 🎯 Overview
 
-LuxeMart Backend is a **production-ready microservices platform** designed for high-performance luxury marketplace operations. Built with modern technologies and best practices, it handles millions of transactions with enterprise-grade reliability.
+LuxeMart Backend is a **production-ready Laravel API** designed for high-performance luxury marketplace operations. Built with Laravel 11 and modern PHP practices, it handles millions of transactions with enterprise-grade reliability.
 
-### Why LuxeMart Backend?
+### Why Laravel?
 
-- 🚀 **Scalable** - Microservices architecture for horizontal scaling
-- 🔒 **Secure** - Enterprise-grade security with JWT, RBAC, and encryption
-- ⚡ **Fast** - Redis caching, optimized queries, and CDN integration
-- 🔄 **Real-time** - WebSocket support for live updates
-- 📊 **Observable** - Comprehensive logging, monitoring, and analytics
-- 🐳 **Cloud-Ready** - Docker & Kubernetes deployment ready
+- 🚀 **Rapid Development** - Elegant syntax and powerful features
+- 🔒 **Secure** - Built-in security features and best practices
+- ⚡ **Fast** - Optimized performance with caching and queues
+- 📦 **Rich Ecosystem** - Thousands of packages available
+- 🧪 **Testable** - Comprehensive testing tools
+- 🐳 **Cloud-Ready** - Docker & Laravel Sail support
 
 ---
 
@@ -45,12 +43,12 @@ LuxeMart Backend is a **production-ready microservices platform** designed for h
 
 ### 🛍️ Advanced E-Commerce
 - Product catalog with variants
-- Smart search with Elasticsearch
+- Smart search with Laravel Scout
 - Real-time inventory management
 - Dynamic pricing and promotions
 
 ### 💳 Payment Processing
-- Multiple payment gateways (Stripe, PayPal, Midtrans)
+- Multiple payment gateways (Stripe, Midtrans, Xendit)
 - Secure payment handling
 - Automated payout system
 - Refund management
@@ -62,10 +60,10 @@ LuxeMart Backend is a **production-ready microservices platform** designed for h
 - Return and refund workflows
 
 ### 💬 Communication
-- Real-time chat system
+- Real-time chat with Laravel Echo
 - Push notifications (FCM)
-- Email notifications
-- SMS alerts
+- Email notifications (Queue)
+- SMS alerts (Twilio)
 
 ### 📺 Live Shopping
 - Live streaming integration (Agora)
@@ -83,53 +81,20 @@ LuxeMart Backend is a **production-ready microservices platform** designed for h
 
 ## 🏗️ Architecture
 
-### Microservices Overview
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      API Gateway (Kong)                      │
-│                    Load Balancer & Routing                   │
-└─────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
-│  Auth Service  │   │  User Service  │   │Product Service │
-│   Port 3001    │   │   Port 3002    │   │   Port 3003    │
-└────────────────┘   └────────────────┘   └────────────────┘
-        │                     │                     │
-┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
-│ Vendor Service │   │ Order Service  │   │Payment Service │
-│   Port 3004    │   │   Port 3005    │   │   Port 3006    │
-└────────────────┘   └────────────────┘   └────────────────┘
-        │                     │                     │
-┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
-│Shipping Service│   │ Review Service │   │  Chat Service  │
-│   Port 3007    │   │   Port 3008    │   │   Port 3009    │
-└────────────────┘   └────────────────┘   └────────────────┘
-        │                     │                     │
-┌───────▼────────┐   ┌───────▼────────┐   ┌───────▼────────┐
-│Live Shop Svc   │   │ Notify Service │   │Analytics Svc   │
-│   Port 3010    │   │   Port 3011    │   │   Port 3012    │
-└────────────────┘   └────────────────┘   └────────────────┘
-```
-
-### Technology Stack
+### Tech Stack
 
 | Category | Technology |
 |----------|-----------|
-| **Runtime** | Node.js 18+ |
-| **Language** | TypeScript 5.0+ |
-| **Framework** | Express.js 4.18+ |
-| **API Gateway** | Kong / Nginx |
-| **Message Queue** | RabbitMQ |
-| **Databases** | PostgreSQL 15+, MongoDB 6+ |
+| **Framework** | Laravel 11+ |
+| **Language** | PHP 8.2+ |
+| **Database** | PostgreSQL 15+ |
 | **Cache** | Redis 7+ |
-| **Search** | Elasticsearch 8+ |
-| **Real-time** | Socket.io |
-| **Container** | Docker, Kubernetes |
-| **Monitoring** | Prometheus, Grafana |
-| **Logging** | Winston, ELK Stack |
+| **Search** | Laravel Scout + Meilisearch |
+| **Queue** | Redis Queue |
+| **Real-time** | Laravel Echo + Pusher |
+| **Storage** | AWS S3 / MinIO |
+| **Container** | Docker, Laravel Sail |
+| **Testing** | PHPUnit, Pest |
 
 ---
 
@@ -138,10 +103,9 @@ LuxeMart Backend is a **production-ready microservices platform** designed for h
 ### Prerequisites
 
 ```bash
-node >= 18.0.0
-npm >= 9.0.0
-docker >= 20.0.0
-docker-compose >= 2.0.0
+PHP >= 8.2
+Composer >= 2.6
+Docker >= 20.0.0
 ```
 
 ### Installation
@@ -152,36 +116,40 @@ git clone https://github.com/Naufall18/luxemart-backend.git
 cd luxemart-backend
 
 # Install dependencies
-npm install
+composer install
 
 # Setup environment
 cp .env.example .env
-# Edit .env with your configuration
+php artisan key:generate
 
-# Start infrastructure (databases, cache, etc.)
+# Start Docker services
 docker-compose up -d
 
-# Run database migrations
-npm run migrate
+# Run migrations
+php artisan migrate
 
-# Seed initial data
-npm run seed
+# Seed database
+php artisan db:seed
 
 # Start development server
-npm run dev
+php artisan serve
 ```
 
-### Docker Quick Start
+### Using Laravel Sail
 
 ```bash
-# Build and start all services
-docker-compose up --build
+# Install Sail
+composer require laravel/sail --dev
+php artisan sail:install
 
-# View logs
-docker-compose logs -f
+# Start Sail
+./vendor/bin/sail up -d
 
-# Stop services
-docker-compose down
+# Run migrations
+./vendor/bin/sail artisan migrate
+
+# Seed database
+./vendor/bin/sail artisan db:seed
 ```
 
 ---
@@ -190,211 +158,191 @@ docker-compose down
 
 ```
 luxemart-backend/
-├── services/                    # Microservices
-│   ├── auth-service/           # Authentication & Authorization
-│   ├── user-service/           # User management
-│   ├── product-service/        # Product catalog
-│   ├── vendor-service/         # Vendor operations
-│   ├── order-service/          # Order processing
-│   ├── payment-service/        # Payment handling
-│   ├── shipping-service/       # Logistics
-│   ├── review-service/         # Reviews & ratings
-│   ├── chat-service/           # Real-time messaging
-│   ├── live-shopping-service/  # Live streaming
-│   ├── notification-service/   # Notifications
-│   └── analytics-service/      # Analytics
-├── api-gateway/                # API Gateway configuration
-├── shared/                     # Shared utilities
-│   ├── types/                  # TypeScript types
-│   ├── utils/                  # Helper functions
-│   ├── constants/              # Constants
-│   └── middleware/             # Shared middleware
-├── infrastructure/             # Infrastructure as Code
-│   ├── docker/                 # Dockerfiles
-│   ├── kubernetes/             # K8s manifests
-│   └── terraform/              # Terraform configs
-├── scripts/                    # Utility scripts
-├── docs/                       # Documentation
-├── tests/                      # Integration tests
-├── docker-compose.yml          # Docker Compose config
-├── package.json                # Dependencies
-└── README.md                   # This file
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Api/
+│   │   │   │   ├── Auth/
+│   │   │   │   ├── User/
+│   │   │   │   ├── Product/
+│   │   │   │   ├── Vendor/
+│   │   │   │   ├── Order/
+│   │   │   │   └── ...
+│   │   ├── Middleware/
+│   │   └── Requests/
+│   ├── Models/
+│   ├── Services/
+│   ├── Repositories/
+│   └── Events/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── routes/
+│   ├── api.php
+│   └── web.php
+├── tests/
+│   ├── Feature/
+│   └── Unit/
+├── docker-compose.yml
+├── .env.example
+└── README.md
 ```
 
 ---
 
 ## 🔧 Development
 
-### Running Services
+### Artisan Commands
 
 ```bash
-# Run all services
-npm run dev
+# Run development server
+php artisan serve
 
-# Run specific service
-npm run dev:auth
-npm run dev:user
-npm run dev:product
+# Run migrations
+php artisan migrate
 
-# Run with watch mode
-npm run dev:watch
+# Rollback migrations
+php artisan migrate:rollback
+
+# Seed database
+php artisan db:seed
+
+# Clear cache
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+
+# Run queue worker
+php artisan queue:work
+
+# Run scheduler
+php artisan schedule:work
 ```
 
 ### Code Quality
 
 ```bash
-# Lint code
-npm run lint
+# Run tests
+php artisan test
 
-# Fix linting issues
-npm run lint:fix
+# Run specific test
+php artisan test --filter=AuthTest
 
-# Format code
-npm run format
+# Code coverage
+php artisan test --coverage
 
-# Type check
-npm run type-check
-```
+# PHP CS Fixer
+./vendor/bin/pint
 
-### Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run specific service tests
-npm run test:auth
-
-# Run integration tests
-npm run test:integration
-
-# Run e2e tests
-npm run test:e2e
-```
-
-### Database Operations
-
-```bash
-# Create new migration
-npm run migration:create -- AddUsersTable
-
-# Run migrations
-npm run migration:run
-
-# Revert last migration
-npm run migration:revert
-
-# Seed database
-npm run seed
+# PHPStan
+./vendor/bin/phpstan analyse
 ```
 
 ---
 
-## 🐳 Docker & Kubernetes
+## 🐳 Docker & Sail
 
 ### Docker Commands
 
 ```bash
-# Build all services
-docker-compose build
-
 # Start services
 docker-compose up -d
-
-# View logs
-docker-compose logs -f [service-name]
 
 # Stop services
 docker-compose down
 
-# Remove volumes
-docker-compose down -v
+# View logs
+docker-compose logs -f
+
+# Rebuild containers
+docker-compose up -d --build
 ```
 
-### Kubernetes Deployment
+### Sail Commands
 
 ```bash
-# Apply configurations
-kubectl apply -f infrastructure/kubernetes/
+# Start Sail
+./vendor/bin/sail up -d
 
-# Check deployments
-kubectl get deployments
+# Run artisan commands
+./vendor/bin/sail artisan migrate
 
-# Check pods
-kubectl get pods
+# Run composer
+./vendor/bin/sail composer install
 
-# View logs
-kubectl logs -f deployment/auth-service
+# Run tests
+./vendor/bin/sail test
 
-# Scale service
-kubectl scale deployment auth-service --replicas=3
+# Access container
+./vendor/bin/sail shell
 ```
 
 ---
 
-## 📊 Monitoring & Observability
+## 📊 API Documentation
 
-### Available Dashboards
+Interactive API documentation available at:
+- **Swagger UI**: http://localhost:8000/api/documentation
+- **Postman Collection**: `/docs/postman/`
 
-- **Prometheus**: http://localhost:9090
-- **Grafana**: http://localhost:3000
-- **Kibana**: http://localhost:5601
-- **RabbitMQ**: http://localhost:15672
+### API Endpoints
 
-### Health Checks
-
-```bash
-# Check service health
-curl http://localhost:3001/health
-
-# Check all services
-npm run health:check
+```
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/auth/logout
+GET    /api/user/profile
+GET    /api/products
+POST   /api/orders
+...
 ```
 
 ---
 
 ## 🔐 Security
 
-- ✅ JWT-based authentication
-- ✅ Role-based access control (RBAC)
+- ✅ Laravel Sanctum authentication
+- ✅ Role-based access control (Spatie Permission)
 - ✅ Rate limiting
-- ✅ Input validation & sanitization
+- ✅ Input validation
 - ✅ SQL injection prevention
 - ✅ XSS protection
 - ✅ CORS configuration
-- ✅ Helmet.js security headers
 - ✅ Encrypted sensitive data
-- ✅ API key management
 
 ---
 
 ## 📈 Performance
 
-- ⚡ Redis caching layer
+- ⚡ Redis caching
 - ⚡ Database query optimization
-- ⚡ Connection pooling
-- ⚡ Load balancing
-- ⚡ Horizontal scaling
-- ⚡ CDN integration
-- ⚡ Gzip compression
-- ⚡ Response pagination
+- ⚡ Eager loading
+- ⚡ Queue jobs
+- ⚡ Horizon for queue monitoring
+- ⚡ Octane for performance boost
 
 ---
 
-## 📝 API Documentation
+## 🧪 Testing
 
-Interactive API documentation available at:
-- **Swagger UI**: http://localhost:3000/api-docs
-- **Postman Collection**: `/docs/postman/`
+```bash
+# Run all tests
+php artisan test
+
+# Run with coverage
+php artisan test --coverage
+
+# Run specific suite
+php artisan test --testsuite=Feature
+
+# Parallel testing
+php artisan test --parallel
+```
 
 ---
 
 ## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md).
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
@@ -406,22 +354,21 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md).
 
 ## 📄 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
 ## 👥 Team
 
 - **Backend Lead**: [Your Name]
+- **Laravel Developer**: [Name]
 - **DevOps Engineer**: [Name]
-- **Database Admin**: [Name]
 
 ---
 
 ## 📞 Support
 
 - 📧 Email: support@luxemart.com
-- 💬 Slack: #luxemart-backend
 - 📚 Docs: https://docs.luxemart.com
 - 🐛 Issues: [GitHub Issues](https://github.com/Naufall18/luxemart-backend/issues)
 
@@ -429,7 +376,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 
 <div align="center">
 
-**Built with ❤️ by LuxeMart Team**
+**Built with ❤️ using Laravel**
 
 ⭐ Star us on GitHub — it motivates us a lot!
 
