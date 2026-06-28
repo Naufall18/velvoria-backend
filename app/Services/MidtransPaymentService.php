@@ -48,6 +48,13 @@ class MidtransPaymentService
         }
 
         $serverKey = config('services.midtrans.server_key');
+
+        // Refuse to validate when the server key is not configured — otherwise the
+        // signature would be computed against an empty key and could be forged.
+        if (empty($serverKey)) {
+            return false;
+        }
+
         $expectedSignature = hash('sha512', $orderId . $statusCode . $grossAmount . $serverKey);
 
         return hash_equals($expectedSignature, $signature);

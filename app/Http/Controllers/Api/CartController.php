@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddToCartRequest;
 use App\Models\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,13 +22,9 @@ class CartController extends Controller
         ]);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(AddToCartRequest $request): JsonResponse
     {
-        $validated = $request->validate([
-            'product_id' => ['required', 'exists:products,id'],
-            'product_variant_id' => ['nullable', 'exists:product_variants,id'],
-            'quantity' => ['required', 'integer', 'min:1'],
-        ]);
+        $validated = $request->validated();
 
         $existing = $request->user()->carts()
             ->where('product_id', $validated['product_id'])

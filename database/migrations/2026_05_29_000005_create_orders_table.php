@@ -48,7 +48,7 @@ return new class extends Migration
             $table->string('payment_gateway')->nullable();
             $table->string('transaction_id')->nullable();
             $table->decimal('amount', 12, 2);
-            $table->enum('status', ['pending', 'paid', 'failed', 'refunded'])->default('pending');
+            $table->enum('status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->json('metadata')->nullable();
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

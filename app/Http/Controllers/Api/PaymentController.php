@@ -101,6 +101,12 @@ class PaymentController extends Controller
             return response()->json(['error' => 'Payment not found'], 404);
         }
 
+        // Idempotency: Midtrans may deliver the same notification multiple times.
+        // Once a payment reaches a final state, acknowledge without reprocessing.
+        if (in_array($payment->status, ['completed', 'failed'], true)) {
+            return response()->json(['ok' => true, 'message' => 'Already processed']);
+        }
+
         $internalStatus = $this->midtrans->mapStatus($status);
 
         $payment->transaction_id = $transactionId;
