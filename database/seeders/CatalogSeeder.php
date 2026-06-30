@@ -13,6 +13,7 @@ use App\Models\ProductVariant;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\Wishlist;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -229,6 +230,14 @@ class CatalogSeeder extends Seeder
                 }
 
                 $orderNo++;
+            }
+        }
+
+        // ── Wishlist (agar tab Wishlist berisi saat testing) ──
+        foreach ($buyers as $bi => $buyer) {
+            for ($k = 0; $k < 4; $k++) {
+                $p = $created[($bi * 4 + $k + 2) % count($created)];
+                Wishlist::firstOrCreate(['user_id' => $buyer->id, 'product_id' => $p->id]);
             }
         }
     }
