@@ -8,7 +8,12 @@ return [
 
     'allowed_origins' => explode(',', env('CORS_ALLOWED_ORIGINS', 'http://localhost:5173')),
 
-    'allowed_origins_patterns' => [],
+    // Terima dev server Vite di port mana pun (5173/5174/5175/…) tanpa harus
+    // mengubah env tiap kali port bergeser.
+    'allowed_origins_patterns' => [
+        '#^http://localhost:\d+$#',
+        '#^http://127\.0\.0\.1:\d+$#',
+    ],
 
     'allowed_headers' => ['*'],
 
