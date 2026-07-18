@@ -10,3 +10,4 @@ Catatan perubahan penting velvoria-backend (Laravel API).
 - Rate limiting untuk endpoint auth
 - Resource collection untuk respons list produk yang lebih ringkas
 - Seeder tambahan untuk data demo dashboard
+- Kaji rate limiting endpoint auth (2026-07-18)
