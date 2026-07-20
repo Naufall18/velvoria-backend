@@ -12,3 +12,4 @@ Catatan perubahan penting velvoria-backend (Laravel API).
 - Seeder tambahan untuk data demo dashboard
 - Kaji rate limiting endpoint auth (2026-07-18)
 - Draf konfigurasi throttle login 5/menit (2026-07-19)
+- Draf RateLimiter login 5/menit per IP (2026-07-20)
